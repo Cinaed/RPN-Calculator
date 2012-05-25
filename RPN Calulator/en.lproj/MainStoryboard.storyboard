@@ -243,7 +243,6 @@
                                 </state>
                                 <connections>
                                     <action selector="enterPressed" destination="2" eventType="touchUpInside" id="wrq-bD-ode"/>
-                                    <action selector="operationPressed:" destination="2" eventType="touchUpInside" id="KG8-WW-4QW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -254,7 +253,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="186" y="92"/>
+            <point key="canvasLocation" x="35" y="133"/>
         </scene>
     </scenes>
     <classes>

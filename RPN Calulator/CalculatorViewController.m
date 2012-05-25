@@ -9,6 +9,7 @@
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
 
+// Private properties...
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
@@ -25,7 +26,6 @@
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
 }
-
 - (IBAction)digitPressed:(UIButton *)sender 
 {
     NSString *digit = sender.currentTitle;
@@ -36,19 +36,19 @@
         self. userIsInTheMiddleOfEnteringANumber = YES;
     }
 }
-
 - (IBAction)enterPressed 
 {
     [self.brain pushOperand:[self.display.text doubleValue]];
      self.userIsInTheMiddleOfEnteringANumber = NO;
 }
-
 - (IBAction)operationPressed:(UIButton *)sender 
 {
-    if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
-    double result = [self.brain performOperation:sender.currentTitle];
-    NSString *resultString = [NSString stringWithFormat:@"%g", result];
-    self.display.text = resultString;
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    NSString *operation = [sender currentTitle];
+    double result = [self.brain performOperation:operation];
+    self.display.text = [NSString stringWithFormat:@"%g", result];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CalculatorBrain.h"
 
+// Private properties...
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *operandStack;
 @end    
@@ -29,7 +30,9 @@
 - (double)popOperand 
 {
     NSNumber *operandObject =[self.operandStack lastObject];
-    if (operandObject) [self.operandStack removeLastObject]; // ensures that empty array isn't popped... which would crash application
+    if (operandObject) [self.operandStack removeLastObject];
+    // Ensures that empty array isn't popped... which would crash application
+
     return [operandObject doubleValue];
 }
 
@@ -40,16 +43,20 @@
     if ([operation isEqualToString:@"+"]) {             // perform addition
         result = [self popOperand] + [self popOperand];
     } else if ([operation isEqualToString:@"_"]) {      // perform subtraction
-        result = [self popOperand] - [self popOperand];
+        double subtrahend = [self popOperand];
+        result = [self popOperand] - subtrahend;
     } else if ([operation isEqualToString:@"*"]) {      // perform multiplication
         result = [self popOperand] * [self popOperand];
     } else if ([operation isEqualToString:@"/"]) {      // perform division
-        result = [self popOperand] / [self popOperand];
+        double divisor = [self popOperand];
+        if (divisor) {  // Eventually change (divisor) to (divisor != 0)
+            result = [self popOperand] / divisor;
+        }
+        // else { // Display error message on screen for dividing by zero. }
     }
     
     [self pushOperand:result];
     
     return result;
 }
-
 @end
