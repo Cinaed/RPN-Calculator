@@ -49,10 +49,23 @@
         result = [self popOperand] * [self popOperand];
     } else if ([operation isEqualToString:@"/"]) {      // perform division
         double divisor = [self popOperand];
-        if (divisor) {  // Eventually change (divisor) to (divisor != 0)
+        if (divisor) {  
+            // Eventually change (divisor) to (divisor != 0)
             result = [self popOperand] / divisor;
         }
-        // else { // Display error message on screen for dividing by zero. }
+        
+        /* 
+        else { 
+            // Display error message on screen for dividing by zero. 
+        }
+         */
+        
+    } else if ([operation isEqualToString:@"sin"]) {    // perform sine operation
+        result = sin([self popOperand]);
+    } else if ([operation isEqualToString:@"cos"]) {    // perform cosine operation
+        result = cos([self popOperand]);
+    } else if ([operation isEqualToString:@"sqrt"]) {   // perform squareroot operation
+        result = sqrt([self popOperand]);
     }
     
     [self pushOperand:result];
